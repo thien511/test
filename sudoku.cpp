@@ -62,7 +62,7 @@ int main()
         for(auto j : i) {
             cout << j << " ";
         }
-        
+        cout << "\n";
     }
     return 0;
 }
