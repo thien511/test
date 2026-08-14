@@ -6,29 +6,7 @@ bool rowUsed[N][N] = {false};
 bool colUsed[N][N] = {false};
 bool boxUsed[N][N] = {false};
 
-bool backTrack(vector<vector<char>> &board, int row, int col)
-{
-    if (row == N)
-        return true;
-    if (col == N)
-        return backTrack(board, row + 1, 0);
-    if (board[row][col] != '.')
-        return backTrack(board, row, col + 1);
-    int boxIndex = (row / 3) * 3 + col / 3;
-    for (int num = 0; num < 9; num++)
-    {
-        if (!rowUsed[row][num] && !colUsed[col][num] && !boxUsed[boxIndex][num])
-        {
-            board[row][col] = num + '1';
-            rowUsed[row][num] = colUsed[col][num] = boxUsed[boxIndex][num] = true;
-            if (backTrack(board, row, col + 1))
-                return true;
-            board[row][col] = '.';
-            rowUsed[row][num] = colUsed[col][num] = boxUsed[boxIndex][num] = false;
-        }
-    }
-    return false;
-}
+
 
 void solveSudoku(vector<vector<char>> &board)
 {
