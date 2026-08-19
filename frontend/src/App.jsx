@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react'
-import './App.css'
+import { useEffect, useState } from "react";
+import ProductList from "./pages/ProductList";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [message, setMessage] = useState("");
-  
-  useEffect(() => {
-    fetch('http://localhost:8000/api/')
-    .then(Response => Response.json())
-    .then(data => setMessage(data.message))
-    .catch(error => console.log("Error fetching message: ", error));
-  }, [])
-
   return (
     <>
-      <div>
-        <h1>Message from backend</h1>
-        <p>{message || 'Loading...'}</p>
-      </div>
+      <Router>
+        <Nabvar />
+        <Routes>
+          <Route path="/" element={<ProductList />} />
+          {/* <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route element={<PrivateRouter />}>
+            <Route path="/checkout" element={<CheckoutPage />} />
+          </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} /> */}
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
